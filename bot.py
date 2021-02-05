@@ -124,7 +124,7 @@ async def restart(ctx):
 @commands.is_owner()
 async def shutdown(ctx):
     await ctx.channel.send("Shuttingdown")
-    os.mknod("shutdown")
+    await os.mknod("shutdown")
     await ctx.bot.logout()
 
 @bot.event
