@@ -116,7 +116,7 @@ async def foodlist(ctx, *args):
 @bot.command()
 @commands.is_owner()
 async def shutdown(ctx):
-    await ctx.channel.send("Shuttingdown")
+    await ctx.channel.send("Shuttingdown2")
     #await asyncio.sleep(5)
     await ctx.bot.logout()
 
