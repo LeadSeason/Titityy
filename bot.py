@@ -115,8 +115,16 @@ async def foodlist(ctx, *args):
 
 @bot.command()
 @commands.is_owner()
+async def restart(ctx):
+    await ctx.channel.send("Restarting")
+    await ctx.bot.logout()
+
+
+@bot.command()
+@commands.is_owner()
 async def shutdown(ctx):
     await ctx.channel.send("Shuttingdown")
+    os.mknod("shutdown")
     await ctx.bot.logout()
 
 @bot.event
