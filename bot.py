@@ -132,5 +132,5 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandOnCooldown):
         await ctx.send(f"Command on cooldown, try again in: {round(error.retry_after)} seconds.")
 
-
+print("bot has started")
 bot.run(token)
