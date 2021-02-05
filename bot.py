@@ -126,3 +126,4 @@ async def on_command_error(ctx, error):
 
 
 bot.run(token)
+print("test")
