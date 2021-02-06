@@ -29,17 +29,19 @@ async def todo(ctx, arg, title="all", *args):
     print("arg  :" + arg)
     print("title:" + title)
 
-    if args == []:
-        args = []
-
     if arg == "add":
+        print("test1")
         data = ""   
         json_data = {}
+        print("test2")
         for s in args:  
             data += s
             data += " " 
+        print("test3")
         data = data[:-1]
+        print("test4")
         json_data.update({title:data})
+        print("test5")
         with open("todo.json", "r+", encoding='utf8') as f:
             data = json.load(f)
             data.update(json_data)
