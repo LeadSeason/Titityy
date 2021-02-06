@@ -29,7 +29,7 @@ async def todo(ctx, *args):
 """
 
 
-@bot.command()
+
 @bot.command(aliases=["fl","sapuska"])
 async def foodlist(ctx, *args):
     skip=False
