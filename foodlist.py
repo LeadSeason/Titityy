@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup as Soup
 import json
 import string
-#comment
 
 def get_foodlist():
     url = "https://www.kpedu.fi/palvelut/ravintolat-ja-ruokalistat/menuetti-ja-pikkumenuetti-opiskelijaravintolat"
