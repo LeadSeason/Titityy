@@ -139,8 +139,10 @@ async def cat(ctx, arg):
             h = k.read()
             k.close()
             style = ""
-            if arg.endswuth(".py"): style = "py"
-            if arg.endswuth(".json"): style = ".json"
+            if arg.endswith(".py"):
+                style = "py"
+            if arg.endswith(".json"):
+                style = ".json"
             await ctx.channel.send("```" + style + "\n" + h + "```")
         except Exception as e:
             await ctx.channel.send("Error:" + e)
