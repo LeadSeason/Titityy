@@ -50,11 +50,10 @@ async def todo(ctx, arg, title="all", *args):
         print("test1")
         if title == "all":
             print("test2")
-            embed=discord.Embed(title="TODO List", color=0x4d4d4d)
+            with open("todo.json", encoding='utf-8') as s:
+                data = json.load(s)
             print("test3")
-            h = open("todo.json", encoding="utf8")
-            print("test4")
-            data = json.load(h)
+            embed=discord.Embed(title="TODO List", color=0x4d4d4d)
             print("test5")
             for x in data:
                 print("test6")
