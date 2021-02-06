@@ -35,11 +35,11 @@ async def todo(ctx, arg, title="all", *args):
             data += " " 
         data = data[:-1]
         json_data.update({title:data})
-        with open("todo.json", "r+", encoding='utf8') as file:
-            data = json.load(file)
+        with open("todo.json", "r+", encoding='utf8') as f:
+            data = json.load(f)
             data.update(json_data)
-            file.seek(0)
-            json.dump(data, file, ensure_ascii=False)
+            f.seek(0)
+            json.dump(data, f, ensure_ascii=False)
         """
         with open("todo.json",'w', encoding='utf8') as f: 
                 #json.dump(json_data, f, ensure_ascii=False) 
@@ -50,7 +50,7 @@ async def todo(ctx, arg, title="all", *args):
         print("test1")
         if title == "all":
             print("test2")
-            with open("todo.json") as s:
+            with open("todo.json", encoding='utf-8') as s:
                 data = json.load(s)
             print("test3")
             embed=discord.Embed(title="TODO List", color=0x4d4d4d)
