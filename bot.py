@@ -26,43 +26,32 @@ async def json_generate(ctx):
 @bot.command()
 @commands.is_owner()
 async def todo(ctx, arg, title="all", *args):
-    print("arg  :" + arg)
-    print("title:" + title)
-
     if arg == "add":
-        print("test1")
         data = ""   
         json_data = {}
-        print("test2")
         for s in args:  
             data += s
             data += " " 
-        print("test3")
         data = data[:-1]
-        print("test4")
         json_data.update({title:data})
-        print("test5")
-        print(json_data)
+        embed=discord.Embed(title="Added TODO", color=0x4d4d4d)
+        embed.add_field(name=title, value=data, inline=False)
         with open("todo.json", "r+", encoding='utf8') as f:
             data = json.load(f)
             data.update(json_data)
             f.seek(0)
             json.dump(data, f, ensure_ascii=False)
+        await ctx.send(embed=embed)
 
     elif arg == "list":
-        print("test1")
         if title == "all":
-            print("test2")
             with open("todo.json", encoding='utf-8') as s:
-                print("test3")
                 data = json.load(s)
-            print("test4")
             embed=discord.Embed(title="TODO List", color=0x4d4d4d)
-            print("test5")
+            if data == {}:
+                embed.add_field(name="TODO List is empty", value="Use ,todo add (title) (note)", inline=False)
             for x in data:
-                print("test6")
                 embed.add_field(name=x, value=data[x], inline=False)
-            print("test7")
             await ctx.send(embed=embed)
         else:
             """
@@ -72,6 +61,20 @@ async def todo(ctx, arg, title="all", *args):
                 for x in data:
                     embed.add_field(name=x, value=data[x], inline=False)
             """
+    elif arg == "del":
+        with open("todo.json", encoding='utf-8') as s:
+            data = json.load(s)
+        try:
+            h1 = data[title]
+            data.pop(title)
+            with open("todo.json",'w', encoding='utf8') as f: 
+                json.dump(data, f, ensure_ascii=False) 
+            embed=discord.Embed(title="Deleted todo " + title , color=0xFF5733)
+            embed.add_field(name=title, value=h1, inline=False)
+        except:
+            embed=discord.Embed(title="There is no " + title, color=0xFF5733)
+        await ctx.send(embed=embed)
+
     else:
         await ctx.channel.send("Unknown arg")
 
@@ -86,8 +89,6 @@ async def foodlist(ctx, *args):
         if h == "error":
             await ctx.channel.send("there was a error while making the json file")
             skip = True
-
-
 
     sapuska = ""
 
@@ -139,20 +140,19 @@ async def foodlist(ctx, *args):
         ",foodlist specific day" to show a specific day
         valid days are ma ti ke to pe
         """
-        embed=discord.Embed(title="food list",description=des, color=0xFF5733)
+        embed=discord.Embed(title="food list",description=des, color=0x4d4d4d)
         await ctx.send(embed=embed)
         skip = True
         
     if not skip:
         with open("data.json", encoding='utf-8') as s:
             foodlist = json.load(s)
-        print("test1")
         if not sapuska == "Viikon sapuskat":
             sapuska = "Sapuskat"
             if len(args) == 1:
                 sapuska = "Tänä päivän Sapuskaa"
         
-        embed=discord.Embed(title=sapuska, color=0xFF5733)
+        embed=discord.Embed(title=sapuska, color=0x4d4d4d)
         
         args2 = ["ma","ti","ke","to","pe"]
         for x in args2: 
