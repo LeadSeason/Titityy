@@ -22,11 +22,21 @@ async def json_generate(ctx):
         await ctx.channel.send("json generated")
     elif h == "error":
         await ctx.channel.send("there was a error while making the json file")
-"""
+
 @bot.command()
 @commands.is_owner()
-async def todo(ctx, *args):
-"""
+async def todo(ctx, arg, title, *args):
+    if arg == "add":
+        data = ""   
+        json_data = {}
+        for s in args:  
+            data += s
+            data += " " 
+        data = data[:-1]
+        json_data = {title:data}
+        with open("todo.json",'w', encoding='utf8') as f: 
+                #json.dump(data, f, ensure_ascii=False) 
+                json.dump(data, f, indent=4, ensure_ascii=False)
 
 
 
