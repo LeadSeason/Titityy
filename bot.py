@@ -100,12 +100,10 @@ async def foodlist(ctx, *args):
             foodlist = json.load(s)
         print("test1")
         if not sapuska == "Viikon sapuskat":
-            print("test2")
             sapuska = "Sapuskat"
-            
             if len(args) == 1:
                 sapuska = "Tänä päivän Sapuskaa"
-        print("test3")
+        
         embed=discord.Embed(title=sapuska, color=0xFF5733)
         
         args2 = ["ma","ti","ke","to","pe"]
@@ -123,6 +121,21 @@ async def foodlist(ctx, *args):
 async def restart(ctx):
     await ctx.channel.send("Restarting")
     await ctx.bot.logout()
+
+@bot.command()
+@commands.is_owner()
+async def cat(ctx, arg):
+    nono_files = ["discord_conf.json","file"]
+    if arg in nono_files:
+        await ctx.channel.send("thats a nono file")
+    else:
+        try:
+            k = open(arg)
+            h = k.read()
+            k.close
+            await ctx.channel.send(h)
+        except Exception as e:
+            await ctx.channel.send("Error:" + e)
 
 
 @bot.command()
