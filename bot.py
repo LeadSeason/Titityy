@@ -52,13 +52,13 @@ async def todo(ctx, arg, title="all", *args):
             print("test2")
             embed=discord.Embed(title="TODO List", color=0x4d4d4d)
             print("test3")
-            with open("todo.json", encoding="utf8" ) as h:
-                print("test4")
-                data = json.load(h)
-                print("test5")
-                for x in data:
-                    print("test6")
-                    embed.add_field(name=x, value=data[x], inline=False)
+            h = open("todo.json", encoding="utf8")
+            print("test4")
+            data = json.load(h)
+            print("test5")
+            for x in data:
+                print("test6")
+                embed.add_field(name=x, value=data[x], inline=False)
             print("test7")
             await ctx.send(embed=embed)
         else:
