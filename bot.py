@@ -27,6 +27,8 @@ async def json_generate(ctx):
 @commands.is_owner()
 async def todo(ctx, arg, title, *args):
     if arg == "add":
+        data_io = open("todo.json")
+        json_data = json.load(data_io)
         data = ""   
         json_data = {}
         for s in args:  
@@ -35,8 +37,8 @@ async def todo(ctx, arg, title, *args):
         data = data[:-1]
         json_data.update({title:data})
         with open("todo.json",'w', encoding='utf8') as f: 
-                #json.dump(data, f, ensure_ascii=False) 
-                json.dump(json_data, f, indent=4, ensure_ascii=False)
+                json.dump(json_data, f, ensure_ascii=False) 
+                #json.dump(json_data, f, indent=4, ensure_ascii=False)
     elif arg == "list":
         if title == "":
             pass
