@@ -34,11 +34,11 @@ async def todo(ctx, arg, title, *args):
             data += " " 
         data = data[:-1]
         json_data.update({title:data})
-        with open("todo.json", "r+") as file:
+        with open("todo.json", "r+", encoding='utf8') as file:
             data = json.load(file)
             data.update(json_data)
             file.seek(0)
-            json.dump(data, file)
+            json.dump(data, file, ensure_ascii=False)
         """
         with open("todo.json",'w', encoding='utf8') as f: 
                 #json.dump(json_data, f, ensure_ascii=False) 
