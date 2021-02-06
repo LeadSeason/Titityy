@@ -130,20 +130,31 @@ async def foodlist(ctx, *args):
 @bot.command()
 @commands.is_owner()
 async def cat(ctx, arg):
+    print("test1")
     nono_files = ["discord_conf.json","file"]
     if arg in nono_files:
         await ctx.channel.send("you cant open that. thats a nono file")
     else:
+        print("test2")
         try:
+            print("test3")
             k = open(arg)
+            print("test4")
             h = k.read()
+            print("test5")
             k.close()
+            print("test6")
             style = ""
+            print("test7")
             if arg.endswith(".py"):
+                print("test8")
                 style = "py"
             if arg.endswith(".json"):
-                style = ".json"
+                print("test9")
+                style = "json"
+            print("test10")
             await ctx.channel.send("```" + style + "\n" + h + "```")
+            print("test11")
         except Exception as e:
             await ctx.channel.send("Error:" + e)
 
