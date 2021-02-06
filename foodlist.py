@@ -27,8 +27,8 @@ def generate_jsonfile():
             except ValueError:
                 break
         food_list.remove("")
-        list_food = []
-        date = ""
+        #list_food = []
+        #date = ""
         data = {}
         for x in food_list:
             #print(list_food)

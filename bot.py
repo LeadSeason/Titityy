@@ -127,7 +127,7 @@ async def restart(ctx):
 async def cat(ctx, arg):
     nono_files = ["discord_conf.json","file"]
     if arg in nono_files:
-        await ctx.channel.send("thats a nono file")
+        await ctx.channel.send("you cant open that. thats a nono file")
     else:
         try:
             k = open(arg)
