@@ -28,7 +28,10 @@ async def json_generate(ctx):
 async def todo(ctx, arg, title="all", *args):
     print("arg  :" + arg)
     print("title:" + title)
-    print("args :" + args)
+    
+    if args == []:
+        args = []
+
     if arg == "add":
         data = ""   
         json_data = {}
