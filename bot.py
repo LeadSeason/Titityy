@@ -33,10 +33,10 @@ async def todo(ctx, arg, title, *args):
             data += s
             data += " " 
         data = data[:-1]
-        json_data = {title:data}
+        json_data.update({title:data})
         with open("todo.json",'w', encoding='utf8') as f: 
                 #json.dump(data, f, ensure_ascii=False) 
-                json.dump(data, f, indent=4, ensure_ascii=False)
+                json.dump(json_data, f, indent=4, ensure_ascii=False)
 
 
 
@@ -161,6 +161,8 @@ async def shutdown(ctx):
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandOnCooldown):
         await ctx.send(f"Command on cooldown, try again in: {round(error.retry_after)} seconds.")
+    if isinstance(error, commands.NotOwner):
+        await ctx.send(f"you aint the bot owener")
 
 print("bot has started")
 bot.run(token)
