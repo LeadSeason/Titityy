@@ -26,6 +26,7 @@ async def json_generate(ctx):
 @bot.command()
 @commands.is_owner()
 async def todo(ctx, arg, title, *args):
+    print(arg)
     if arg == "add":
         data = ""   
         json_data = {}
