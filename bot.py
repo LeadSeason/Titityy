@@ -42,6 +42,7 @@ async def todo(ctx, arg, title="all", *args):
         print("test4")
         json_data.update({title:data})
         print("test5")
+        print(json_data)
         with open("todo.json", "r+", encoding='utf8') as f:
             data = json.load(f)
             data.update(json_data)
