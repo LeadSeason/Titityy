@@ -105,7 +105,7 @@ async def foodlist(ctx, *args):
             
             if len(args) == 1:
                 sapuska = "Tänä päivän Sapuskaa"
-        
+        print("test3")
         embed=discord.Embed(title=sapuska, color=0xFF5733)
         
         args2 = ["ma","ti","ke","to","pe"]
