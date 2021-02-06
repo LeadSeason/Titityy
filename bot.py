@@ -28,7 +28,7 @@ async def json_generate(ctx):
 async def todo(ctx, arg, title="all", *args):
     print("arg  :" + arg)
     print("title:" + title)
-    
+
     if args == []:
         args = []
 
@@ -50,7 +50,7 @@ async def todo(ctx, arg, title="all", *args):
         print("test1")
         if title == "all":
             print("test2")
-            s = open("todo.json", encoding='utf-8')
+            s = open("todo.json", "r", encoding='utf8')
             print("test3")
             data = json.load(s)
             print("test4")
