@@ -30,6 +30,7 @@ async def todo(ctx, *args):
 
 
 @bot.command()
+@bot.command(aliases=["fl","sapuska"])
 async def foodlist(ctx, *args):
     skip=False
     if time.time() - os.stat("./data.json").st_mtime > 3000:
