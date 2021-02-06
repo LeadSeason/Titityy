@@ -38,7 +38,7 @@ async def todo(ctx, arg, title, *args):
             data = json.load(file)
             data.update(json_data)
             file.seek(0)
-            json.dump(data, file, indent=4)
+            json.dump(data, file)
         """
         with open("todo.json",'w', encoding='utf8') as f: 
                 #json.dump(json_data, f, ensure_ascii=False) 
