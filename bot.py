@@ -7,8 +7,6 @@ from discord.ext import tasks
 from foodlist import generate_jsonfile
 from discord.ext import commands
 
-#test
-
 with open("discord_conf.json") as discord_conf:
     token = json.load(discord_conf)["token"]
 
@@ -117,6 +115,7 @@ async def foodlist(ctx, *args):
 @commands.is_owner()
 async def restart(ctx):
     await ctx.channel.send("Restarting")
+    print(ctx.channel())
     await ctx.bot.logout()
 
 
