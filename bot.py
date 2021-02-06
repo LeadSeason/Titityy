@@ -126,11 +126,6 @@ async def foodlist(ctx, *args):
 
         await ctx.send(embed=embed)
 
-@bot.command()
-@commands.is_owner()
-async def restart(ctx):
-    await ctx.channel.send("Restarting")
-    await ctx.bot.logout()
 
 @bot.command()
 @commands.is_owner()
@@ -142,11 +137,19 @@ async def cat(ctx, arg):
         try:
             k = open(arg)
             h = k.read()
-            k.close
-            await ctx.channel.send(h)
+            k.close()
+            style = ""
+            if arg.endswuth(".py"): style = "py"
+            if arg.endswuth(".json"): style = ".json"
+            await ctx.channel.send("```" + style + "\n" + h + "```")
         except Exception as e:
             await ctx.channel.send("Error:" + e)
 
+@bot.command()
+@commands.is_owner()
+async def restart(ctx):
+    await ctx.channel.send("Restarting")
+    await ctx.bot.logout()
 
 @bot.command()
 @commands.is_owner()
