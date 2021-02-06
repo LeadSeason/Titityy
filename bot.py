@@ -25,7 +25,7 @@ async def json_generate(ctx):
 
 @bot.command()
 @commands.is_owner()
-async def todo(ctx, arg, title, *args):
+async def todo(ctx, arg, title="all", *args):
     print(arg)
     if arg == "add":
         data = ""   
@@ -48,7 +48,7 @@ async def todo(ctx, arg, title, *args):
 
     elif arg == "list":
         print("test1")
-        if title == "":
+        if title == "all":
             print("test2")
             embed=discord.Embed(title="TODO List", color=0x4d4d4d)
             print("test3")
