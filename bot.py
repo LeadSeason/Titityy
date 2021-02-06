@@ -47,9 +47,22 @@ async def todo(ctx, arg, title, *args):
 
     elif arg == "list":
         if title == "":
-            pass
+            embed=discord.Embed(title="TODO List", color=0x4d4d4d)
+            with open("todo.json", encoding="utf8" ) as h:
+                data = json.load(h)
+                for x in data:
+                    embed.add_field(name=x, value=data[x], inline=False)
+            await ctx.send(embed=embed)
         else:
-            pass
+            """
+            embed=discord.Embed(title="TODO List", color=0x4d4d4d)
+            with open("todo.json", encoding="utf8" ) as h:
+                data = json.load(h)
+                for x in data:
+                    embed.add_field(name=x, value=data[x], inline=False)
+            """
+    else:
+        await ctx.channel.send("Unknown arg")
 
 
 

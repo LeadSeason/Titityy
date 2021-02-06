@@ -2,8 +2,7 @@ import os
 import time
 import json
 
-with open("todo.json", "r+") as file:
-    data = json.load(file)
-    data.update({"toinen": "emt"})
-    file.seek(0)
-    json.dump(data, file, indent=4)
+with open("todo.json", encoding="utf8" ) as h:
+    data = json.load(h)
+    for x in data:
+        print(data[x])
