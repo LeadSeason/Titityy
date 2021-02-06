@@ -26,7 +26,9 @@ async def json_generate(ctx):
 @bot.command()
 @commands.is_owner()
 async def todo(ctx, arg, title="all", *args):
-    print(arg)
+    print("arg  :" + arg)
+    print("title:" + title)
+    print("args :" + args)
     if arg == "add":
         data = ""   
         json_data = {}
@@ -40,19 +42,15 @@ async def todo(ctx, arg, title="all", *args):
             data.update(json_data)
             f.seek(0)
             json.dump(data, f, ensure_ascii=False)
-        """
-        with open("todo.json",'w', encoding='utf8') as f: 
-                #json.dump(json_data, f, ensure_ascii=False) 
-                json.dump(json_data, f, indent=4, ensure_ascii=False)
-        """
 
     elif arg == "list":
         print("test1")
         if title == "all":
             print("test2")
-            with open("todo.json", encoding='utf-8') as s:
-                data = json.load(s)
+            s = open("todo.json", encoding='utf-8')
             print("test3")
+            data = json.load(s)
+            print("test4")
             embed=discord.Embed(title="TODO List", color=0x4d4d4d)
             print("test5")
             for x in data:
