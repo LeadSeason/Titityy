@@ -149,7 +149,7 @@ async def cat(ctx, arg):
         await ctx.channel.send("you cant open that. thats a nono file")
     else:
         try:
-            k = open(arg)
+            k = open(arg, encoding='utf-8')
             h = k.read()
             k.close()
             style = ""
