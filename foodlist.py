@@ -27,7 +27,8 @@ def generate_jsonfile():
             except ValueError:
                 break
         food_list.remove("")
-
+        list_food = []
+        date = ""
         data = {}
         for x in food_list:
             #print(list_food)
@@ -64,8 +65,8 @@ def generate_jsonfile():
         #data_json = json.dumps(data,indent=4).encode('utf8')
         #print(data_json.decode())
         with open("data.json",'w', encoding='utf8') as f: 
-            #json.dump(data, f, ensure_ascii=False) 
-            json.dump(data, f, indent=4, ensure_ascii=False)
+            json.dump(data, f, ensure_ascii=False) 
+            #json.dump(data, f, indent=4, ensure_ascii=False)
         return "success"
     except Exception as e:
         print(e)

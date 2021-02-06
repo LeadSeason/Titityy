@@ -22,6 +22,12 @@ async def json_generate(ctx):
         await ctx.channel.send("json generated")
     elif h == "error":
         await ctx.channel.send("there was a error while making the json file")
+"""
+@bot.command()
+@commands.is_owner()
+async def todo(ctx, *args):
+"""
+
 
 @bot.command()
 async def foodlist(ctx, *args):
@@ -39,7 +45,7 @@ async def foodlist(ctx, *args):
     if args == ():
         sapuska = "Viikon sapuskat"
         args = ["ma","ti","ke","to","pe"]
-
+    date = ""
     dates = []
     ma_args = ["manantai","ma","mon","monday"]
     ti_args = ["tiistai","ti","tue","tues","tuesday"]
@@ -115,7 +121,6 @@ async def foodlist(ctx, *args):
 @commands.is_owner()
 async def restart(ctx):
     await ctx.channel.send("Restarting")
-    print(await ctx.channel())
     await ctx.bot.logout()
 
 
