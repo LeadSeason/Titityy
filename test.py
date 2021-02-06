@@ -1,13 +1,9 @@
 import os
 import time
 import json
-arg = input()
-k = open(arg)
-h = k.read()
-k.close()
-style = ""
-if arg.endswith(".py"):
-    style = "py"
-if arg.endswith(".json"):
-    style = "json"
-print("```" + style + "\n" + h + "```")
+
+with open("todo.json", "r+") as file:
+    data = json.load(file)
+    data.update({"toinen": "emt"})
+    file.seek(0)
+    json.dump(data, file, indent=4)
