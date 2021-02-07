@@ -3,6 +3,7 @@ import discord
 import asyncio
 import os
 import time
+import schedule
 from discord.ext import tasks
 from foodlist import generate_jsonfile
 from discord.ext import commands
@@ -163,10 +164,6 @@ async def foodlist(ctx, *args):
 
         await ctx.send(embed=embed)
 
-@tasks.loop(seconds=10)
-async def test_task():
-    print("test_task has run")
-
 @bot.command()
 @commands.is_owner()
 async def cat(ctx, arg):
@@ -206,7 +203,5 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.NotOwner):
         await ctx.send(f"you aint the bot owener")
 
-
 print("bot has started")
-test_task.start()
 bot.run(token)
