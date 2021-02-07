@@ -7,7 +7,7 @@ from discord.ext import tasks
 from foodlist import generate_jsonfile
 from discord.ext import commands
 
-with open("discord_conf.json") as discord_conf:
+with open("./configs/discord_conf.json") as discord_conf:
     token = json.load(discord_conf)["token"]
 
 bot = commands.Bot(command_prefix=",")
