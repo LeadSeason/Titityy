@@ -36,7 +36,7 @@ async def todo(ctx, arg, title="all", *args):
         json_data.update({title:data})
         embed=discord.Embed(title="Added TODO", color=0x4d4d4d)
         embed.add_field(name=title, value=data, inline=False)
-        with open("todo.json", "r+", encoding='utf8') as f:
+        with open("./data/todo.json", "r+", encoding='utf8') as f:
             data = json.load(f)
             data.update(json_data)
             f.seek(0)
@@ -45,7 +45,7 @@ async def todo(ctx, arg, title="all", *args):
 
     elif arg == "list":
         if title == "all":
-            with open("todo.json", encoding='utf-8') as s:
+            with open("./data/todo.json", encoding='utf-8') as s:
                 data = json.load(s)
             embed=discord.Embed(title="TODO List", color=0x4d4d4d)
             if data == {}:
@@ -56,18 +56,18 @@ async def todo(ctx, arg, title="all", *args):
         else:
             """
             embed=discord.Embed(title="TODO List", color=0x4d4d4d)
-            with open("todo.json", encoding="utf8" ) as h:
+            with open("./data/todo.json", encoding="utf8" ) as h:
                 data = json.load(h)
                 for x in data:
                     embed.add_field(name=x, value=data[x], inline=False)
             """
     elif arg == "del":
-        with open("todo.json", encoding='utf-8') as s:
+        with open("./data/todo.json", encoding='utf-8') as s:
             data = json.load(s)
         try:
             h1 = data[title]
             data.pop(title)
-            with open("todo.json",'w', encoding='utf8') as f: 
+            with open("./data/todo.json",'w', encoding='utf8') as f: 
                 json.dump(data, f, ensure_ascii=False) 
             embed=discord.Embed(title="Deleted todo " + title , color=0xFF5733)
             embed.add_field(name=title, value=h1, inline=False)
