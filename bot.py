@@ -84,7 +84,7 @@ async def todo(ctx, arg, title="all", *args):
 @bot.command(aliases=["fl","sapuska"])
 async def foodlist(ctx, *args):
     skip=False
-    if time.time() - os.stat("./data.json").st_mtime > 3000:
+    if time.time() - os.stat("./data/foods.json").st_mtime > 3000:
         h = generate_jsonfile()
         if h == "error":
             await ctx.channel.send("there was a error while making the json file")
@@ -145,7 +145,7 @@ async def foodlist(ctx, *args):
         skip = True
         
     if not skip:
-        with open("data.json", encoding='utf-8') as s:
+        with open("./data/foods.json", encoding='utf-8') as s:
             foodlist = json.load(s)
         if not sapuska == "Viikon sapuskat":
             sapuska = "Sapuskat"

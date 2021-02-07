@@ -63,7 +63,7 @@ def generate_jsonfile():
         #print(data)
         #data_json = json.dumps(data,indent=4).encode('utf8')
         #print(data_json.decode())
-        with open("data.json",'w', encoding='utf8') as f: 
+        with open("./data/foods.json",'w', encoding='utf8') as f: 
             json.dump(data, f, ensure_ascii=False) 
             #json.dump(data, f, indent=4, ensure_ascii=False)
         return "success"
