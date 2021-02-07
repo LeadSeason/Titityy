@@ -80,7 +80,6 @@ async def todo(ctx, arg, title="all", *args):
 
 
 
-
 @bot.command(aliases=["fl","sapuska"])
 async def foodlist(ctx, *args):
     skip=False
@@ -164,6 +163,9 @@ async def foodlist(ctx, *args):
 
         await ctx.send(embed=embed)
 
+@tasks.loop(seconds=10)
+async def test_task():
+    print("test_task has run")
 
 @bot.command()
 @commands.is_owner()
@@ -204,5 +206,7 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.NotOwner):
         await ctx.send(f"you aint the bot owener")
 
+
 print("bot has started")
+test_task.start()
 bot.run(token)
