@@ -80,7 +80,7 @@ async def todo(ctx, arg, title="all", *args):
     else:
         await ctx.channel.send("unknown arg")
 
-@bot.commands(aliases=["r"])
+@bot.commands()
 async def reddit(ctx, command):
     is_logged_aliases = ["islogged","is_logged","is_logged_in"]
     if command in is_logged_aliases:
