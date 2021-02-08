@@ -164,6 +164,10 @@ async def foodlist(ctx, *args):
 
         await ctx.send(embed=embed)
 
+@tasks.loop(seconds=5)
+async def schedule_script(ctx):
+    schedule.run_pending()
+
 @bot.command()
 @commands.is_owner()
 async def cat(ctx, arg):
@@ -202,6 +206,11 @@ async def on_command_error(ctx, error):
         await ctx.send(f"Command on cooldown, try again in: {round(error.retry_after)} seconds.")
     if isinstance(error, commands.NotOwner):
         await ctx.send(f"you aint the bot owener")
+
+
+schedule.every().day.at("10:30").do(foodlist)
+
+schedule_script.start()
 
 print("bot has started")
 bot.run(token)
