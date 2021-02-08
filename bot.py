@@ -87,6 +87,7 @@ async def reddit(ctx, command):
         pass
     else:
         pass
+    
 @bot.command(aliases=["fl","sapuska"])
 async def foodlist(ctx, *args):
     skip=False
