@@ -84,9 +84,9 @@ async def todo(ctx, arg, title="all", *args):
 async def reddit(ctx, command):
     is_logged_aliases = ["islogged","is_logged","is_logged_in"]
     if command in is_logged_aliases:
-        ctx.channel.send(meme.is_logged())
+        pass
     else:
-        ctx.channel.send("unknow command")
+        pass
 @bot.command(aliases=["fl","sapuska"])
 async def foodlist(ctx, *args):
     skip=False
