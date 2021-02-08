@@ -4,6 +4,7 @@ import asyncio
 import os
 import time
 import schedule
+from meme import meme
 from discord.ext import tasks
 from foodlist import generate_jsonfile
 from discord.ext import commands
@@ -79,7 +80,11 @@ async def todo(ctx, arg, title="all", *args):
     else:
         await ctx.channel.send("Unknown arg")
 
-
+@bot.commands(aliases=["r"])
+async def reddit(ctx, command):
+    is_logged_aliases = ["islogged","is_logged","is_logged_in"]
+    if command in is_logged_aliases:
+        ctx.channel.send(meme.is_logged())
 
 @bot.command(aliases=["fl","sapuska"])
 async def foodlist(ctx, *args):
