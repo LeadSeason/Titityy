@@ -19,6 +19,6 @@ class meme:
         )
     def random(self):
         pass
-    
+
     def is_logged(self):
-        return self.reddit.read_only()
+        print(self.reddit.read_only())
