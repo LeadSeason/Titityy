@@ -211,7 +211,7 @@ async def shutdown(ctx):
     await ctx.channel.send("Shuttingdown")
     await ctx.bot.logout()
 
-    
+"""
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandOnCooldown):
@@ -219,6 +219,6 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.NotOwner):
         await ctx.send(f"you aint the bot owener")
 
-        
+"""
 print("Logged in Titityy")
 bot.run(token)
