@@ -25,6 +25,7 @@ async def json_generate(ctx):
     elif h == "error":
         await ctx.channel.send("there was a error while making the json file")
 
+        
 @bot.command()
 @commands.is_owner()
 async def todo(ctx, arg, title="all", *args):
@@ -80,6 +81,7 @@ async def todo(ctx, arg, title="all", *args):
     else:
         await ctx.channel.send("unknown arg")
 
+        
 @bot.command(aliases=["r","meme"])
 @commands.is_owner()
 async def reddit(ctx, command):
@@ -90,6 +92,7 @@ async def reddit(ctx, command):
     else:
         await ctx.channel.send("unknow command")
 
+        
 @bot.command(aliases=["fl","sapuska"])
 async def foodlist(ctx, *args):
     skip=False
@@ -173,6 +176,7 @@ async def foodlist(ctx, *args):
 
         await ctx.send(embed=embed)
 
+        
 @bot.command()
 @commands.is_owner()
 async def cat(ctx, arg):
@@ -193,18 +197,21 @@ async def cat(ctx, arg):
         except Exception as e:
             await ctx.channel.send("Error:" + e)
 
+            
 @bot.command()
 @commands.is_owner()
 async def restart(ctx):
     await ctx.channel.send("Restarting")
     await ctx.bot.logout()
 
+    
 @bot.command()
 @commands.is_owner()
 async def shutdown(ctx):
     await ctx.channel.send("Shuttingdown")
     await ctx.bot.logout()
 
+    
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandOnCooldown):
@@ -212,5 +219,6 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.NotOwner):
         await ctx.send(f"you aint the bot owener")
 
+        
 print("Logged in Titityy")
 bot.run(token)
