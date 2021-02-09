@@ -212,5 +212,5 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.NotOwner):
         await ctx.send(f"you aint the bot owener")
 
-print("bot has started")
+print("Logged in Titityy")
 bot.run(token)
