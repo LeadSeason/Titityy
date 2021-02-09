@@ -19,7 +19,7 @@ bot = commands.Bot(command_prefix=",")
 @commands.is_owner()
 async def json_generate(ctx):
     await ctx.channel.send("generating json")
-    h = await self.client.loop.run_in_executor(None, functools.partial(generate_jsonfile))
+    h = await bot.loop.run_in_executor(None, functools.partial(generate_jsonfile))
     if h == "success":
         await ctx.channel.send("json generated")
     elif h == "error":
@@ -97,7 +97,7 @@ async def reddit(ctx, command):
 async def foodlist(ctx, *args):
     skip=False
     if time.time() - os.stat("./data/foods.json").st_mtime > 3000:
-        h = await self.client.loop.run_in_executor(None, functools.partial(generate_jsonfile))
+        h = await bot.loop.run_in_executor(None, functools.partial(generate_jsonfile))
         if h == "error":
             await ctx.channel.send("there was a error while making the json file")
             skip = True
