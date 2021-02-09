@@ -1,13 +1,16 @@
+from discord.ext import commands, tasks
+
 import json
 import discord
 import asyncio
-import os
-import time
-import schedule
 from meme import meme
-from discord.ext import tasks
+import os
+import time, functools
+import schedule
+
+
 from foodlist import generate_jsonfile
-from discord.ext import commands
+
 
 with open("./configs/discord_conf.json") as discord_conf:
     token = json.load(discord_conf)["token"]
