@@ -22,7 +22,7 @@ bot = commands.Bot(command_prefix=",")
 @commands.is_owner()
 async def json_generate(ctx):
     await ctx.channel.send("generating json")
-    h = await bot.loop.run_in_executor(None, functools.partial(generate_jsonfile))
+    h = generate_jsonfile()
     if h == "success":
         await ctx.channel.send("json generated")
     elif h == "error":
