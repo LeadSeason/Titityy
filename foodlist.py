@@ -41,6 +41,11 @@ def generate_jsonfile():
                 list_food = []
                 date = "ti"
                 list_food.append(x)
+            elif x.startswith("LASKIAISTIISTAI"):
+                data.update({date:list_food})
+                list_food = []
+                date = "ti"
+                list_food.append(x)
             elif x.startswith("KESKIVIIKKO"):
                 data.update({date:list_food})
                 list_food = []
