@@ -179,7 +179,7 @@ async def foodlist(ctx, *args):
                 embed.add_field(name=k[0], value=foods, inline=False)
 
         await ctx.send(embed=embed)
-
+"""
 @tasks.loop(seconds=5.0)
 async def sch(ctx):
     schedule.run_pending()
@@ -235,7 +235,7 @@ async def dayly(ctx):
                 embed.add_field(name=k[0], value=foods, inline=False)
 
         await ctx.send(embed=embed)
-
+"""
         
 @bot.command()
 @commands.is_owner()
@@ -280,6 +280,6 @@ async def on_command_error(ctx, error):
         await ctx.send(f"you aint the bot owener")
 
 """
-schedule.every().day.at("10:30").do(dayly)
+#schedule.every().day.at("10:30").do(dayly)
 print("Logged in Titityy")
 bot.run(token)
