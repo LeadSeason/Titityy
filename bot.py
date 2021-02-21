@@ -5,9 +5,10 @@ import discord
 import asyncio
 from meme import meme
 import os
-import time, functools
+import time
+import functools
 import schedule
-
+import datetime
 
 from foodlist import generate_jsonfile
 
@@ -16,6 +17,7 @@ with open("./configs/discord_conf.json") as discord_conf:
     token = json.load(discord_conf)["token"]
 
 bot = commands.Bot(command_prefix=",")
+
 
 @commands.cooldown(1.0, 60.0)
 @bot.command()
@@ -28,14 +30,14 @@ async def json_generate(ctx):
     elif h == "error":
         await ctx.channel.send("there was a error while making the json file")
 
-        
+
 @bot.command()
 @commands.is_owner()
-async def todo(ctx, arg, title="all", *args):
+async def todo(ctx,  arg, title="all", *args):
     if arg == "add":
         data = ""   
         json_data = {}
-        for s in args:  
+        for s in args:
             data += s
             data += " " 
         data = data[:-1]
@@ -73,7 +75,7 @@ async def todo(ctx, arg, title="all", *args):
         try:
             h1 = data[title]
             data.pop(title)
-            with open("./data/todo.json",'w', encoding='utf8') as f: 
+            with open("./data/todo.json", 'w', encoding='utf8') as f: 
                 json.dump(data, f, ensure_ascii=False) 
             embed=discord.Embed(title="Deleted todo " + title , color=0xFF5733)
             embed.add_field(name=title, value=h1, inline=False)
@@ -117,7 +119,7 @@ async def foodlist(ctx, *args):
     ke_args = ["keskiviikko","ke","wed","weds","wednesday"]
     to_args = ["torstai","to","thu","thur","thurs","thursday"]
     pe_args = ["perjantai","pe","fri","friday"]
-    help_args = ["help","apua","h"]
+    help_args = ["help","apua","h","?"]
 
     for input_arg in args:
         date = input_arg.lower()
@@ -146,7 +148,6 @@ async def foodlist(ctx, *args):
         embed=discord.Embed(title="",description="invalid argument where given\nsee ,foodlist help for help", color=0xFF5733)
         await ctx.send(embed=embed)
         skip = True
-
 
     if "help" in args:
         des = """
@@ -179,11 +180,63 @@ async def foodlist(ctx, *args):
 
         await ctx.send(embed=embed)
 
+@tasks.loop(seconds=5.0)
+async def sch(ctx):
+    schedule.run_pending()
+
+@bot.command()
+async def dayly(ctx):
+    date = ""
+    dates = []
+    ma_args = ["manantai","ma","mon","monday"]
+    ti_args = ["tiistai","ti","tue","tues","tuesday"]
+    ke_args = ["keskiviikko","ke","wed","weds","wednesday"]
+    to_args = ["torstai","to","thu","thur","thurs","thursday"]
+    pe_args = ["perjantai","pe","fri","friday"]
+    help_args = ["help","apua","h","?"]
+
+    
+    date = datetime.date.today().strftime("%A").lower()
+    if date in ma_args:
+        if not "ma" in dates:
+            dates.append("ma")
+    elif date in ti_args:
+        if not "ti" in dates:
+            dates.append("ti")
+    elif date in ke_args:
+        if not "ke" in dates:
+            dates.append("ke")
+    elif date in to_args:
+        if not "to" in dates:
+            dates.append("to")
+    elif date in pe_args:
+        if not "pe" in dates:
+            dates.append("pe")
+        
+    if dates == []:
+        pass
+    else:
+        with open("./data/foods.json", encoding='utf-8') as s:
+            foodlist = json.load(s)
+
+        sapuska = "Tänäpäivän ruoka on"
+        embed=discord.Embed(title=sapuska, description="@FL-listener ", color=0x4d4d4d)
+        
+        args2 = ["ma","ti","ke","to","pe"]
+        for x in args2: 
+            if x in dates:
+                k = foodlist[x]
+                foods = "\n"
+                foods = foods.join(k[1:])
+                embed.add_field(name=k[0], value=foods, inline=False)
+
+        await ctx.send(embed=embed)
+
         
 @bot.command()
 @commands.is_owner()
 async def cat(ctx, arg):
-    nono_files = ["discord_conf.json","file"]
+    nono_files = ["./configs/discord_conf.json"]
     if arg in nono_files:
         await ctx.channel.send("you cant open that. thats a nono file")
     else:
@@ -223,5 +276,6 @@ async def on_command_error(ctx, error):
         await ctx.send(f"you aint the bot owener")
 
 """
+schedule.every().day.at("10:30").do(dayly)
 print("Logged in Titityy")
 bot.run(token)
