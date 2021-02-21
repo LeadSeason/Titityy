@@ -197,6 +197,7 @@ async def dayly(ctx):
 
     
     date = datetime.date.today().strftime("%A").lower()
+    print(date)
     if date in ma_args:
         if not "ma" in dates:
             dates.append("ma")
@@ -212,10 +213,12 @@ async def dayly(ctx):
     elif date in pe_args:
         if not "pe" in dates:
             dates.append("pe")
-        
+    print(dates)
     if dates == []:
+        print("brick")
         pass
     else:
+        print("jee")
         with open("./data/foods.json", encoding='utf-8') as s:
             foodlist = json.load(s)
 
