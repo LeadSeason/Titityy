@@ -196,7 +196,8 @@ async def dayly(ctx):
     help_args = ["help","apua","h","?"]
 
     
-    date = datetime.date.today().strftime("%A").lower()
+    #date = datetime.date.today().strftime("%A").lower()
+    date = "monday"
     print(date)
     if date in ma_args:
         if not "ma" in dates:
